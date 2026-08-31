@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar comércio</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>Cadastrar comércio local</h1>
+        <h2>Cadastre seu comercio e conheça seus vizinhos.</h2>
+        <a href="index.html">Voltar para o início</a>
+    </header>
+    <main>
+        <section class="business-form">
+            <div class="business-card">
+                <form action="#" method="post">
+
+                    <fieldset>
+                        <legend>Cadastrar comércio</legend>
+
+                        <label for="name" class="required">Razão Social</label>
+                        <input type="text" id="name" placeholder="Digite o nome do estabelecimento" required>
+
+                        <label for="phone" class="required">Telefone</label>
+                        <input type="tel" id="phone" placeholder="(99) 99999-9999" required>
+
+                        <label for="email" class="required">E-mail</label>
+                        <input type="text" id="email" placeholder="Digite seu e-mail" required>
+
+                        <label for="endereco" class="required">Endereço</label>
+                        <input type="text" id="endereco" placeholder="Av/rua, Nº, referência " required>
+
+                        <div class="action-form">
+                            <button class="button-cancel">Cancelar</button>
+                            <button class="button-save" type="submit">Salvar</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>

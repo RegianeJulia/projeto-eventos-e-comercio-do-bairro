@@ -1,0 +1,237 @@
+html {
+  overflow-x: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+body {
+  min-height: 100vh;
+  padding: 1.25rem;
+  color: black;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+    url("assets/imagem-background-IA.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+header {
+  font-weight: 700;
+  font-size: clamp(2rem, 6vw, 3rem);
+  text-align: center;
+  margin: 2rem;
+  color: #000;
+}
+
+header a {
+  font-size: 1.6rem;
+}
+
+.home-page {
+  justify-items: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 4rem;
+}
+
+@media (max-width: 900px) {
+  .home-page {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+}
+
+h2 {
+  font-size: 2rem;
+  padding-bottom: 1.5rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+.event-form,
+.business-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.event-card,
+.business-card {
+  width: 46rem;
+  max-width: 100%;
+  border: 0.1rem solid rgba(0, 0, 0, 0.95);
+  padding: 2rem 2.5rem;
+  position: relative;
+  background-color: white;
+}
+
+.card-content {
+  position: relative;
+  z-index: 3;
+}
+
+.highlight {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: rgb(233, 138, 15);
+  line-height: 3rem;
+  margin-bottom: 1rem;
+}
+
+.event-image-container,
+.business-image-container {
+  margin-bottom: 2rem;
+  border-radius: 0.8rem;
+  background-color: #fff;
+}
+
+.event-image,
+.business-image {
+  width: 72%;
+  display: block;
+  margin: 1.5rem auto;
+}
+
+.primary-actions {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.primary-actions a,
+.secondary-actions a {
+  border-radius: 1.2rem;
+  text-decoration: none;
+  height: 4.5rem;
+  font-size: 2rem;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.secondary-actions {
+  padding-top: 1.5%;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.primary-actions a {
+  background: #ff5678;
+}
+
+.secondary-actions a {
+  background-color: #577afa;
+}
+
+.footer {
+  font-weight: 300;
+  font-size: 2rem;
+  margin-top: 3rem;
+}
+
+.footer a {
+  margin-top: 1rem;
+  text-align: center;
+  color: #ac5ff3;
+}
+
+.required::after {
+  content: " *";
+  color: #e53935;
+  font-weight: bold;
+}
+
+legend {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #333;
+  padding: 0 1rem;
+}
+
+.event-form fieldset,
+.business-form fieldset {
+  padding: 2.5rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-size: 2rem;
+  border: 2px solid #d8d8d8;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.event-form label,
+.business-form label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.event-form input,
+.business-form input,
+.event-form select,
+.business-form select {
+  margin-bottom: 1.8rem;
+}
+
+.action-form {
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.action-form button {
+  border: none;
+  border-radius: 1.2rem;
+  text-decoration: none;
+  height: 4.5rem;
+  font-size: 1.5rem;
+  color: #fff;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-cancel {
+  background-color: #ff5678;
+}
+
+.button-save {
+  background-color: #577afa;
+}
+
+.center-text {
+  justify-content: center;
+  display: flex;
+  font-size: 1.5rem;
+}
