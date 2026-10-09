@@ -24,8 +24,7 @@
   <main>
     <section class="event-form">
       <div class="event-card">
-        <form action="#" method="post">
-
+        <form>
           <fieldset>
             <legend>Crie seu evento</legend>
 
@@ -40,10 +39,10 @@
             <input type="email" name="email" id="email" placeholder="Digite seu e-mail" required>
 
             <label for="endereco" class="required">Endereço</label>
-            <input type="text" id="endereco" placeholder="Av/rua, Nº, referência " required>
+            <input type="text" name="endereco"id="endereco" placeholder="Av/rua, Nº, referência " required>
 
             <label for="telefone" class="required">Telefone:</label>
-            <input type="telefone" name="telefone" id="telefone" placeholder="(99) 99999-9999" required>
+            <input type="tel" name="telefone" id="telefone" placeholder="(99) 99999-9999" required>
 
             <section id="categoria" nome="categoria"></section>
             <label for="tipo-de-evento" class="required">Categoria</label>
@@ -55,7 +54,7 @@
               <option value="adote-um-pet">Adote um pet</option>
             </select>
             <div class="action-form">
-              <button class="button-cancel">Cancelar</button>
+              <button type="button" class="button-cancel">Cancelar</button>
               <button class="button-save" type="submit">Salvar</button>
             </div>
           </fieldset>
@@ -65,5 +64,4 @@
   </main>
   <script src="script.js"></script>
 </body>
-
 </html>

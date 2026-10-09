@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cadastro de evento </title>
     <link rel="stylesheet" href="./styles.css">
-
 </head>
 
 <body>
@@ -44,15 +43,11 @@
 
                         <!--Seleção-->
                         <section id="categoria" nome="categoria"></section>
-                        <label for="tipo-de-evento" class="required">Categoria</label>
-                        <Select id="tipo-de-evento" name="tipo-de-evento" required>
-                            <option value="esportes">Esportes</option>
-                            <option value="evento-cultural">Evento cultural</option>
-                            <option value="feira-gastronomica">Feira gastronomica</option>
-                            <option value="adote-um-pet">Adote um pet</option>
-                        </Select>
+                        <label for="new-category" class="required">Nova categoria</label>
+                        <input type="text" id="new-category" name="new-category"
+                            placeholder="Digite o nome da nova categoria" required>
                         <div class="action-form">
-                            <button class="button-cancel">Cancelar</button>
+                            <button type="button" class="button-cancel">Cancelar</button>
                             <button class="button-save" type="submit">Salvar</button>
                         </div>
                     </fieldset>
@@ -62,5 +57,4 @@
     </main>
     <script src="script.js"></script>
 </body>
-
 </html>
