@@ -1,5 +1,7 @@
 const events = JSON.parse(localStorage.getItem("events")) || [];
+const businesses = JSON.parse(localStorage.getItem("businesses")) || [];
 const eventsList = document.querySelector("#events-list");
+
 function displayEvents() {
   eventsList.innerHTML = "";
 
@@ -139,5 +141,157 @@ if (eventForm) {
 
     localStorage.setItem("events", JSON.stringify(events));
     window.location.href = "lista-de-eventos.html";
+  });
+}
+
+// comercio
+
+const businessForm = document.querySelector(".business-form form");
+const businessesList = document.querySelector("#businesses-list");
+
+if (businessForm) {
+  const cancelButton = businessForm.querySelector('.button-cancel[type="button"]');
+  const categorySelect = businessForm.querySelector("#tipo-de-comercio");
+  const customCategoryField = businessForm.querySelector("#outra-categoria-container");
+  const customCategoryInput = businessForm.querySelector("#outra-categoria");
+  const businessId = Number(new URLSearchParams(window.location.search).get("id"));
+  const existingBusiness = businesses.find(function (business) {
+    return business.id === businessId;
+  });
+
+  function updateCustomCategoryField() {
+    const isCustomCategory = categorySelect.value === "outros";
+    customCategoryField.hidden = !isCustomCategory;
+    customCategoryInput.required = isCustomCategory;
+  }
+
+  categorySelect.addEventListener("change", updateCustomCategoryField);
+
+  if (cancelButton) {
+    cancelButton.addEventListener("click", function () {
+      window.location.href = "index.html";
+    });
+  }
+
+  if (existingBusiness) {
+    document.querySelector("#nome").value = existingBusiness.name;
+    document.querySelector("#telefone").value = existingBusiness.phone;
+    document.querySelector("#email").value = existingBusiness.email;
+    document.querySelector("#endereco").value = existingBusiness.address;
+
+    const categoryExists = Array.from(categorySelect.options).some(function (option) {
+      return option.value === existingBusiness.category;
+    });
+
+    if (categoryExists) {
+      categorySelect.value = existingBusiness.category;
+    } else if (existingBusiness.category) {
+      categorySelect.value = "outros";
+      customCategoryInput.value = existingBusiness.category;
+    }
+  }
+
+  updateCustomCategoryField();
+
+  businessForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    if (categorySelect.value === "outros") {
+      customCategoryInput.value = customCategoryInput.value.trim();
+      if (!customCategoryInput.reportValidity()) return;
+    }
+
+    const businessData = {
+      id: existingBusiness ? existingBusiness.id : Date.now(),
+      name: document.querySelector("#nome").value,
+      phone: document.querySelector("#telefone").value,
+      email: document.querySelector("#email").value,
+      address: document.querySelector("#endereco").value,
+      category: categorySelect.value === "outros" ? customCategoryInput.value : categorySelect.value,
+    };
+
+    if (existingBusiness) {
+      const businessIndex = businesses.findIndex(function (business) {
+        return business.id === existingBusiness.id;
+      });
+      businesses[businessIndex] = businessData;
+    } else {
+      businesses.push(businessData);
+    }
+
+    localStorage.setItem("businesses", JSON.stringify(businesses));
+    window.location.href = "lista-de-comercios.html";
+  });
+}
+
+function displayBusinesses() {
+  businessesList.innerHTML = "";
+
+  if (businesses.length === 0) {
+    businessesList.innerHTML = '<p class="center-text">Nenhum comércio cadastrado até o momento.</p>';
+    return;
+  }
+
+  const categoryNames = {
+    " acougue-e-casa-de- carne": "Açougue e Casa de Carne",
+    "beleza-estética": "Beleza, Estética e Cuidados Pessoais",
+    "boutique": "Boutique",
+    "farmacia": "Farmácia",
+    "mercearia": "Mercearia",
+    "padarias": "Padaria",
+    "pet-shop": "Pet shop",
+  };
+
+  businesses.forEach(function (business) {
+    const categoryName = categoryNames[business.category] || business.category || "Não informada";
+
+    businessesList.innerHTML += `
+      <div class="business-item">
+        <h3>${business.name}</h3>
+        <p>Categoria: ${categoryName}</p>
+        <p>Telefone: ${business.phone}</p>
+        <p>E-mail: ${business.email}</p>
+        <p>Endereço: ${business.address}</p>
+        <button class="button-edit" data-id="${business.id}">
+          Editar
+        </button>
+        <button class="button-delete" data-id="${business.id}">
+          Excluir
+        </button>
+      </div>`;
+  });
+}
+
+if (businessesList) {
+  displayBusinesses();
+
+  businessesList.addEventListener("click", function (event) {
+    if (event.target.classList.contains("button-edit")) {
+      const businessId = Number(event.target.dataset.id);
+
+      const selectedBusiness = businesses.find(function (business) {
+        return business.id === businessId;
+      });
+
+      if (selectedBusiness) {
+        window.location.href = `cadastrar-comercio.html?id=${selectedBusiness.id}`;
+      }
+      return;
+    }
+
+    if (event.target.classList.contains("button-delete")) {
+      const businessId = Number(event.target.dataset.id);
+
+      if (confirm("Tem certeza que deseja excluir este comércio?")) {
+        const businessIndex = businesses.findIndex(function (business) {
+          return business.id === businessId;
+        });
+
+        if (businessIndex === -1) return;
+        businesses.splice(businessIndex, 1);
+        localStorage.setItem("businesses", JSON.stringify(businesses));
+        displayBusinesses();
+      }
+    }
   });
 }
