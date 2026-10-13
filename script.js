@@ -3,32 +3,50 @@ const businesses = JSON.parse(localStorage.getItem("businesses")) || [];
 const eventsList = document.querySelector("#events-list");
 
 function displayEvents() {
-  eventsList.innerHTML = "";
+  eventsList.replaceChildren();
 
   if (events.length === 0) {
-    eventsList.innerHTML = "<p>Nenhum evento cadastrado ainda.</p>";
+    const message = document.createElement("p");
+    message.textContent = "Nenhum evento cadastrado ainda.";
+    eventsList.appendChild(message);
     return;
   }
 
   events.forEach(function (event) {
-    eventsList.innerHTML += `
-      <div class="event-item">
-        <h3>${event.name}</h3>
-        <p>Organizador: ${event.organizer}</p>
-        <p>Categoria: ${event.category}</p>
-        <p>Endereço: ${event.address}</p>
-        <p>Telefone: ${event.phone}</p>
-        <p>E-mail: ${event.email}</p>
+    const card = document.createElement("div");
+    card.classList.add("event-item");
 
-        <button class="button-edit" data-id="${event.id}">
-          Editar
-        </button>
+    const title = document.createElement("h3");
+    title.textContent = event.name;
+    card.appendChild(title);
 
-        <button class="button-delete" data-id="${event.id}">
-          Excluir
-        </button>
-    </div>
-  `;
+    const details = [
+      ["Organizador", event.organizer],
+      ["Categoria", event.category],
+      ["Endereço", event.address],
+      ["Telefone", event.phone],
+      ["E-mail", event.email],
+    ];
+
+    details.forEach(function (detail) {
+      const paragraph = document.createElement("p");
+      paragraph.textContent = `${detail[0]}: ${detail[1]}`;
+      card.appendChild(paragraph);
+    });
+
+    const editButton = document.createElement("button");
+    editButton.classList.add("button-edit");
+    editButton.dataset.id = event.id;
+    editButton.textContent = "Editar";
+    card.appendChild(editButton);
+
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("button-delete");
+    deleteButton.dataset.id = event.id;
+    deleteButton.textContent = "Excluir";
+    card.appendChild(deleteButton);
+
+    eventsList.appendChild(card);
   });
 }
 
@@ -71,7 +89,7 @@ const eventForm = document.querySelector(".event-form form");
 if (eventForm) {
   const cancelButton = eventForm.querySelector('.button-cancel[type="button"]');
   const categorySelect = eventForm.querySelector("#tipo-de-evento");
-  const newCategoryInput = eventForm.querySelector("#new-category");
+  const newCategoryInput = eventForm.querySelector("#nova-categoria");
 
   if (cancelButton) {
     cancelButton.addEventListener("click", function () {
@@ -130,11 +148,13 @@ if (eventForm) {
       const eventIndex = events.findIndex(function (event) {
         return event.id === existingEvent.id;
       });
-      if (eventIndex !== -1) {
-        events[eventIndex] = eventData;
-      } else {
-        events.push(eventData);
+
+      if (eventIndex === -1) {
+        alert("Evento não encontrado. Não foi possível salvar a edição.");
+        return;
       }
+
+      events[eventIndex] = eventData;
     } else {
       events.push(eventData);
     }
@@ -144,7 +164,7 @@ if (eventForm) {
   });
 }
 
-// comercio
+// comércio
 
 const businessForm = document.querySelector(".business-form form");
 const businessesList = document.querySelector("#businesses-list");
@@ -214,6 +234,12 @@ if (businessForm) {
       const businessIndex = businesses.findIndex(function (business) {
         return business.id === existingBusiness.id;
       });
+
+      if (businessIndex === -1) {
+        alert("Comércio não encontrado. Não foi possível salvar a edição.");
+        return;
+      }
+
       businesses[businessIndex] = businessData;
     } else {
       businesses.push(businessData);
@@ -225,10 +251,12 @@ if (businessForm) {
 }
 
 function displayBusinesses() {
-  businessesList.innerHTML = "";
+  businessesList.replaceChildren();
 
   if (businesses.length === 0) {
-    businessesList.innerHTML = '<p class="center-text">Nenhum comércio cadastrado até o momento.</p>';
+    const message = document.createElement("p");
+    message.textContent = "Nenhum comércio cadastrado até o momento.";
+    businessesList.appendChild(message);
     return;
   }
 
@@ -245,21 +273,41 @@ function displayBusinesses() {
   businesses.forEach(function (business) {
     const categoryName = categoryNames[business.category] || business.category || "Não informada";
 
-    businessesList.innerHTML += `
-      <div class="business-item">
-        <h3>${business.name}</h3>
-        <p>Categoria: ${categoryName}</p>
-        <p>Telefone: ${business.phone}</p>
-        <p>E-mail: ${business.email}</p>
-        <p>Endereço: ${business.address}</p>
-        <button class="button-edit" data-id="${business.id}">
-          Editar
-        </button>
-        <button class="button-delete" data-id="${business.id}">
-          Excluir
-        </button>
-      </div>`;
+    const card = document.createElement("div");
+    card.classList.add("business-item");
+
+    const title = document.createElement("h3");
+    title.textContent = business.name;
+    card.appendChild(title);
+
+    const details = [
+      ["Categoria", categoryName],
+      ["Telefone", business.phone],
+      ["E-mail", business.email],
+      ["Endereço", business.address],
+    ];
+
+    details.forEach(function (detail) {
+      const paragraph = document.createElement("p");
+      paragraph.textContent = `${detail[0]}: ${detail[1]}`;
+      card.appendChild(paragraph);
+    });
+
+    const editButton = document.createElement("button");
+    editButton.classList.add("button-edit");
+    editButton.dataset.id = business.id;
+    editButton.textContent = "Editar";
+    card.appendChild(editButton);
+
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("button-delete");
+    deleteButton.dataset.id = business.id;
+    deleteButton.textContent = "Excluir";
+    card.appendChild(deleteButton);
+
+    businessesList.appendChild(card);
   });
+
 }
 
 if (businessesList) {
