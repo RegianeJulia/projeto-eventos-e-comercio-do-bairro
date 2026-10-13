@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cadastro de evento </title>
+    <title>Cadastro de evento</title>
     <link rel="stylesheet" href="./styles.css">
 </head>
 
@@ -25,26 +25,25 @@
                         <legend>Criar novo evento</legend>
 
                         <label for="nome" class="required">Nome do evento:</label>
-                        <input type="text" name="nome" id="nome" name="nome" placeholder="Digite o nome do evento"
-                            required>
+                        <input type="text" name="nome" id="nome" placeholder="Digite o nome do evento" required>
 
-                        <label for="nome" class="required">Quem está organizando o evento?</label>
-                        <input type="text" name="organizador" id="organizador" name="nome"
+                        <label for="organizador" class="required">Quem está organizando o evento?</label>
+                        <input type="text" name="organizador" id="organizador"
                             placeholder="Digite o nome organizador do evento" required>
 
                         <label for="email" class="required">E-mail:</label>
                         <input type="email" name="email" id="email" placeholder="Digite seu e-mail" required>
 
                         <label for="endereco" class="required">Endereço</label>
-                        <input type="text" id="endereco" placeholder="Av/rua, Nº, referência " required>
+                        <input type="text" name="endereco" id="endereco" placeholder="Av/rua, Nº, referência " required>
 
                         <label for="telefone" class="required">Telefone:</label>
-                        <input type="telefone" name="telefone" id="telefone" placeholder="(99) 99999-9999" required>
+                        <input type="tel" name="telefone" id="telefone" placeholder="(99) 99999-9999" required>
 
                         <!--Seleção-->
-                        <section id="categoria" nome="categoria"></section>
-                        <label for="new-category" class="required">Nova categoria</label>
-                        <input type="text" id="new-category" name="new-category"
+                        <section id="categoria"></section>
+                        <label for="nova-categoria" class="required">Nova categoria</label>
+                        <input type="text" id="nova-categoria" name="nova-categoria"
                             placeholder="Digite o nome da nova categoria" required>
                         <div class="action-form">
                             <button type="button" class="button-cancel">Cancelar</button>
@@ -57,4 +56,5 @@
     </main>
     <script src="script.js"></script>
 </body>
+
 </html>
