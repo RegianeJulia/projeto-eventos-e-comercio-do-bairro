@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar comércio</title>
-
     <link rel="stylesheet" href="styles.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,25 +23,41 @@
     <main>
         <section class="business-form">
             <div class="business-card">
-                <form action="#" method="post">
-
+                <form>
                     <fieldset>
-                        <legend>Cadastrar comércio</legend>
+                        <legend>Cadastre seu comércio</legend>
 
-                        <label for="name" class="required">Razão Social</label>
-                        <input type="text" id="name" placeholder="Digite o nome do estabelecimento" required>
+                        <label for="nome" class="required">Razão Social</label>
+                        <input type="text" id="nome" name="name" placeholder="Digite o nome do estabelecimento" required>
 
-                        <label for="phone" class="required">Telefone</label>
-                        <input type="tel" id="phone" placeholder="(99) 99999-9999" required>
+                        <label for="telefone" class="required">Telefone</label>
+                        <input type="phone" id="telefone" name="phone" placeholder="(99) 99999-9999" required>
 
                         <label for="email" class="required">E-mail</label>
-                        <input type="text" id="email" placeholder="Digite seu e-mail" required>
+                        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
 
                         <label for="endereco" class="required">Endereço</label>
-                        <input type="text" id="endereco" placeholder="Av/rua, Nº, referência " required>
+                        <input type="text" id="endereco" name="address" placeholder="Av/rua, Nº, referência " required>
 
+                        <section id="categoria" nome="categoria"></section>
+                        <label for="tipo-de-comercio" class="required">Categoria</label>
+                        <Select id="tipo-de-comercio" name="tipo-de-comercio" required>
+                            <option value="">Selecione</option>
+                            <option value=" acougue-e-casa-de- carne">Açougue e Casa de Carne</option>
+                            <option value="beleza-estética">Beleza, Estética e Cuidados Pessoais</option>
+                            <option value="boutique">Boutique</option>
+                            <option value="farmacia">Farmácia</option>
+                            <option value="mercearia">Mercearia</option>
+                            <option value="padarias">Padaria</option>
+                            <option value="pet-shop">Pet shop</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                        <div id="outra-categoria-container" hidden>
+                            <label for="outra-categoria" class="required">Qual é a categoria?</label>
+                            <input type="text" id="outra-categoria" name="customCategory" placeholder="Digite a categoria">
+                        </div>
                         <div class="action-form">
-                            <button class="button-cancel">Cancelar</button>
+                            <button type="button" class="button-cancel">Cancelar</button>
                             <button class="button-save" type="submit">Salvar</button>
                         </div>
                     </fieldset>
