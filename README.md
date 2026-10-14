@@ -9,7 +9,7 @@ Projeto de front-end para divulgar eventos e comércios do bairro. As duas área
 - JavaScript puro
 - `localStorage` para armazenar eventos e comércios
 
-## Funcionalidades atuais
+## Funcionalidades implementadas
 
 - Cadastro de eventos com categorias predefinidas.
 - Cadastro de eventos com uma categoria personalizada, vinculada apenas ao evento criado.
@@ -43,7 +43,15 @@ Não há instalação de dependências nem etapa de compilação.
 
 ## Status
 
-Em desenvolvimento. Os fluxos de eventos e comércios usam `localStorage` e são conferidos manualmente, sem uma suíte de testes automatizados neste projeto.
+✅ Projeto concluído.
+
+O Portal de Eventos & Comércio do Bairro foi desenvolvido como um projeto de estudo, com o objetivo de praticar e consolidar meus conhecimentos em desenvolvimento front-end por meio da construção de um CRUD simples utilizando HTML, CSS e JavaScript.
+
+A proposta foi exercitar principalmente a lógica de programação, a manipulação do DOM, a validação de formulários e a persistência de dados com localStorage, aplicando esses conceitos em funcionalidades de cadastro, listagem, edição e exclusão.
+
+Por ser um projeto focado na consolidação desses fundamentos, os principais fluxos foram validados por meio de testes manuais, sem a implementação de testes automatizados.
+
+O desenvolvimento foi encerrado após a revisão das funcionalidades e a aplicação de melhorias de segurança, organização e padronização do código.
 
 ## Autora
 
